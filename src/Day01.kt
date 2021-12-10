@@ -1,6 +1,13 @@
 fun main() {
-    fun part1(input: List<String>): Int {
-        return input.size
+    fun part1(lst: List<Int>): Int {
+        val len = lst.size
+        val arr = Array(lst.size) { 0 }
+
+        for (pos in 1 until len) {
+            arr[pos] = lst[pos].compareTo(lst[pos - 1])
+        }
+
+        return arr.fold(0) { acc, num -> acc + num }
     }
 
     fun part2(input: List<String>): Int {
@@ -8,10 +15,7 @@ fun main() {
     }
 
     // test if implementation meets criteria from the description, like:
-    val testInput = readInput("Day01_test")
-    check(part1(testInput) == 1)
+    val lst = readInput("day1_input_test").map { it.toInt() }
 
-    val input = readInput("Day01")
-    println(part1(input))
-    println(part2(input))
+    print(part1(lst))
 }
