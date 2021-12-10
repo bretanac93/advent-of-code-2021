@@ -11,10 +11,10 @@ fun main() {
             val direction = it.first
             val distance = it.second
 
-            if (direction == "up" || direction == "down") {
-                vertical += directions[direction]!!.times(distance)
-            } else {
-                horizontal += distance
+
+            when (direction) {
+                "up", "down" -> vertical += directions[direction]!!.times(distance)
+                else -> horizontal += distance
             }
         }
 
@@ -34,11 +34,12 @@ fun main() {
             val direction = it.first
             val distance = it.second
 
-            if (direction == "up" || direction == "down") {
-                aim += directions[direction]!!.times(distance)
-            } else {
-                horizontal += distance
-                depth += aim * distance
+            when (direction) {
+                "up", "down" -> aim += directions[direction]!!.times(distance)
+                else -> {
+                    horizontal += distance
+                    depth += aim * distance
+                }
             }
         }
 
